@@ -1,0 +1,204 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+group = 'bbejeck'
+version = '1.0-SNAPSHOT'
+
+description = "Source Code for the Kafka Streams in Action Book"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+task runZmartAdvancedChapter_3(type: JavaExec){
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_3.ZMartKafkaStreamsAdvancedReqsApp"
+}
+
+task runYellingApp(type: JavaExec){
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_3.KafkaStreamsYellingApp"
+}
+
+task runZmartFirstAppChapter_3(type: JavaExec){
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_3.ZMartKafkaStreamsApp"
+}
+
+task runJoinsExampleAppChapter_4(type: JavaExec){
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_4.KafkaStreamsJoinsApp"
+}
+
+task runAddStateAppChapter_4(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_4.ZMartKafkaStreamsAddStateApp"
+}
+
+
+task runAggregationsChapter_5(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_5.AggregationsAndReducingExample"
+}
+
+task runCountingWindowingChapter_5(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_5.CountingWindowingAndKtableJoinExample"
+}
+
+task runGlobalKtableChapter_5(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_5.GlobalKTableExample"
+}
+
+
+task runKStreamKTableChapter_5(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_5.KStreamVsKTableExample"
+}
+
+task runPopsHopsChapter_6(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_6.PopsHopsApplication"
+}
+
+task runStockPerformance_Chapter_6(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_6.StockPerformanceApplication"
+}
+
+task runStockPerformanceStreamsProcess_Chapter_6(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_6.StockPerformanceStreamsAndProcessorApplication"
+}
+
+task runCoGrouping_Chapter_6(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_6.CoGroupingApplication"
+}
+
+task runCoGroupingStateRestoreListener_Chapter_7(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_7.CoGroupingListeningExampleApplication"
+}
+
+task runStockPerformanceConsumerInterceptor_Chapter_7(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_7.StockPerformanceStreamsAndProcessorMetricsApplication"
+}
+
+task runZmartJmxAndProducerInterecptor_Chapter_7(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_7.ZMartKafkaStreamsAdvancedReqsMetricsApp"
+}
+
+task runDatabaseInserts(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.util.db.DBServer"
+}
+
+task runStreamsConnectIntegration_Chapter_9(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_9.StockCountsStreamsConnectIntegrationApplication"
+}
+
+task runProducerInteractiveQueries(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_9.StockPerformanceInteractiveQueryDataProducer"
+}
+
+task runInteractiveQueryApplicationOne(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_9.StockPerformanceInteractiveQueryApplication"
+    args = ['localhost','4567']
+}
+
+task runInteractiveQueryApplicationTwo(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "bbejeck.chapter_9.StockPerformanceInteractiveQueryApplication"
+    args = ['localhost','4568']
+}
+
+
+jar {
+  archiveName='bbejeck-kafka-streams-in-action-1.0-SNAPSHOT.jar'
+}
+
+repositories {
+     mavenCentral()
+}
+
+configurations {
+  compile.exclude group:'ch.qos.logback'
+}
+
+compileJava {
+    options.warnings = true
+    options.deprecation = true
+}
+
+dependencies {
+    compile group: 'com.google.code.gson', name: 'gson', version:'2.6.1'
+    compile group: 'com.google.guava', name: 'guava', version:'21.0'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version:'3.1'
+    compile group: 'com.101tec', name:'zkclient', version:'0.7'
+    compile group: 'com.yammer.metrics', name:'metrics-core', version:'2.2.0'
+    compile group: 'com.twitter', name:'hbc-core', version:'2.2.0'
+    compile group: 'de.julielab', name: 'aliasi-lingpipe', version:'4.1.0'
+    compile group: 'org.apache.commons', name:'commons-lang3', version:'3.4'
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'io.dropwizard', name:'dropwizard-core', version:'1.0.5'
+    compile group: 'com.sparkjava', name: 'spark-core', version: '2.6.0'
+    compile group: 'com.esotericsoftware', name: 'kryo', version: '4.0.0'
+    compile group: 'com.h2database', name:'h2', version: '1.4.196'
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1'
+
+    compile group: 'org.apache.kafka', name: 'connect-api', version: '1.0.0'
+
+    compile group: 'org.apache.kafka', name:'kafka-streams', version: '1.0.0'
+    compile group: 'org.apache.kafka', name:'kafka-clients', version: '1.0.0'
+
+
+    compile group: 'org.rocksdb', name: 'rocksdbjni', version: '5.3.6'
+    
+
+    compile (group: 'com.github.javafaker', name: 'javafaker', version: '0.12') {
+        exclude group:'ch.qos.logback'
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    }
+
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.0'
+    testCompile group:'org.mockito', name:'mockito-core', version:'2.10.0'
+
+    testCompile group:'org.hamcrest', name:'hamcrest-junit', version:'2.0.0.0'
+
+    testCompile group:'org.apache.kafka', name:'kafka-streams', version:'1.0.0', classifier: 'test'
+    testCompile group:'org.apache.kafka', name:'kafka-clients', version:'1.0.0', classifier: 'test'
+
+    testCompile (group:'org.apache.kafka', name:'kafka_2.12', version:'1.0.0') {
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    }
+
+    testCompile (group:'org.apache.kafka', name:'kafka_2.12', version:'1.0.0', classifier: 'test') {
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    }
+
+    testCompile group: 'org.scala-lang', name: 'scala-library-all', version: '2.12.4'
+
+}
